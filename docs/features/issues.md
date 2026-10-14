@@ -44,9 +44,35 @@ When an issue regresses, it gets a fresh set of 20 so you can see the new stack 
 
 Issues are **unresolved**, **resolved** or **ignored**. Resolve an issue when you ship a fix. If it happens again, Workshell reopens it as a **regression**, notes the release it came back in, notifies whoever it's assigned to, and can [alert](/features/analytics#alerts) your team.
 
-Each issue has an activity thread: comments with Markdown and `@mentions`, assignment, status changes, and when it was first seen. Connect a GitHub repository under **Settings → Integrations** to open a linked GitHub issue in one click and see its comments in the thread.
+Each issue has an activity thread: comments with Markdown and `@mentions`, assignment, status changes, and when it was first seen.
 
 Resolving an issue plays a small confetti burst. You earned it.
+
+## GitHub
+
+Connect a repository under **Settings → Integrations** to:
+
+- open a GitHub issue from a Workshell issue in one click, filled in with the event and player counts, the releases it was seen in, the latest message and stack trace, and a link back to Workshell,
+- see that GitHub issue's comments in the Workshell activity thread,
+- post a Workshell comment to the linked GitHub issue as well (tick the option when commenting),
+- link stack frames to your files at the exact commit, when a [release sourcemap](/guide/releases) exists. These links need no token.
+
+### Token permissions
+
+Use a **fine-grained personal access token** scoped to the one repository:
+
+| Setting | Value |
+| --- | --- |
+| Resource owner | The account or organization that owns the repository |
+| Repository access | Only select repositories → your game's repository |
+| Issues | Read and write |
+| Metadata | Read-only (GitHub adds this automatically) |
+
+Workshell needs nothing else: no Contents, Pull requests or Administration access. It only calls GitHub's issue endpoints: create an issue, read it, list its comments and add a comment.
+
+The **Create a token on GitHub** button in the settings opens GitHub's form with the name, owner and Issues permission already filled in; you still pick the repository yourself. If the repository belongs to an organization that requires approval, the token stays pending until an owner approves it.
+
+A classic token also works (`public_repo` for a public repository, `repo` for a private one), but it can reach every repository you can, so prefer a fine-grained one. Tokens are stored encrypted, and **Remove token** deletes it.
 
 ## Exploiters can't bury real bugs
 
