@@ -1,8 +1,23 @@
 # Quick start
 
-Run the Workshell server, create a project, and see data arrive. You need either Docker, or Go 1.26+, Node 22+ and pnpm.
+Run the Workshell server, create a project, and see data arrive.
 
-## Run it with Docker
+## Install the binary
+
+On Linux or macOS:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Shellworks-Development/workshell/master/install.sh | sh
+workshell   # serves on :8080 and stores data in ./data
+```
+
+The script picks the build for your platform from the [latest release](https://github.com/Shellworks-Development/workshell/releases/latest), checks it against the release's `SHA256SUMS`, and installs it to `/usr/local/bin` (or `~/.local/bin` if that isn't writable). Set `WORKSHELL_VERSION=v0.1.0` to install a specific version, or `WORKSHELL_INSTALL` to choose the directory.
+
+On Windows, download `workshell_<version>_windows_amd64.zip` (or `_arm64`) from the [releases page](https://github.com/Shellworks-Development/workshell/releases) and run `workshell.exe`.
+
+Builds exist for Linux, macOS and Windows on amd64 and arm64. The one binary is the server, the dashboard and the [`workshell release`](/guide/releases) CLI.
+
+## Or run it with Docker
 
 ```sh
 git clone https://github.com/Shellworks-Development/workshell
@@ -18,6 +33,8 @@ docker compose up -d
 The Compose file runs Workshell with Redis as a durable ingest queue, and stores data in the `workshell-data` volume.
 
 ## Or build from source
+
+You need Go 1.26+, Node 22+ and pnpm.
 
 ```sh
 make build        # builds the dashboard into a single binary at bin/workshell

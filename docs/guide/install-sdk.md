@@ -4,7 +4,7 @@ The SDK is a Luau ModuleScript. It runs on the server, and optionally on clients
 
 ## 1. Add the module
 
-Download `Workshell.rbxmx` from your project's **Settings → SDK setup** and put it in **ReplicatedStorage**. If you use Rojo or Wally, sync the `sdk/` folder from the Workshell repository instead.
+Download `Workshell.rbxmx` from your project's **Settings → SDK setup**, or `Workshell.rbxm` from the [latest release](https://github.com/Shellworks-Development/workshell/releases/latest), and put it in **ReplicatedStorage**. If you use Rojo or Wally, sync the `sdk/` folder from the Workshell repository instead.
 
 ## 2. Allow HTTP requests
 

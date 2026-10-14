@@ -8,7 +8,7 @@ If you do nothing, the SDK uses `game.PlaceVersion` as the release. You still ge
 
 ## With `workshell release`
 
-Run it in CI before `rojo build`:
+`workshell release` is a subcommand of the same `workshell` binary that runs the server. [Install it](/guide/quick-start#install-the-binary) wherever you build your place, then run it before `rojo build`:
 
 ```sh
 WORKSHELL_URL=https://workshell.example.com WORKSHELL_KEY=wsk_... \
@@ -22,6 +22,35 @@ It does three things:
 3. Generates a Rojo sourcemap and uploads it, so stack frames resolve to files. When a GitHub repository is connected, each frame links to that file at that exact commit.
 
 The release name defaults to the short commit hash, with `-dirty` appended when there are uncommitted changes.
+
+### In GitHub Actions
+
+```yaml
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install Workshell and Rojo
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Shellworks-Development/workshell/master/install.sh | WORKSHELL_INSTALL="$HOME/.local/bin" sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          # install Rojo however you normally do (Rokit, Aftman, or a release download)
+      - name: Tag the release
+        env:
+          WORKSHELL_URL: ${{ secrets.WORKSHELL_URL }}
+          WORKSHELL_KEY: ${{ secrets.WORKSHELL_KEY }}
+        run: workshell release -out src/shared/WorkshellRelease.json
+      - run: rojo build -o game.rbxl
+      # ...then publish game.rbxl with Open Cloud
+```
+
+`workshell release` reads the commit from the checked-out repository, so run it from the repository root. Set `WORKSHELL_VERSION` in the install step to pin the CLI version.
 
 ### Flags
 

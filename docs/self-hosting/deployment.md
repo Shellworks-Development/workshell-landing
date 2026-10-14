@@ -1,6 +1,6 @@
 # Deployment
 
-Workshell is one binary with the dashboard built in. It needs a disk for its SQLite database and, for a live game, a public HTTPS address that Roblox servers can reach.
+Workshell is one binary with the dashboard built in. Get it from the [releases page](https://github.com/Shellworks-Development/workshell/releases) or the [install script](/guide/quick-start#install-the-binary), run it with Docker, or build it from source. It needs a disk for its SQLite database and, for a live game, a public HTTPS address that Roblox servers can reach.
 
 ## Docker Compose
 
@@ -92,7 +92,7 @@ sqlite3 data/workshell.db ".backup 'workshell-backup.db'"
 
 ## Upgrading
 
-Pull and rebuild (`docker compose up -d --build`, or `git pull && make build`) and restart. Database migrations run automatically on start.
+Install the new binary (rerun the install script, or download it from the [releases page](https://github.com/Shellworks-Development/workshell/releases)), or pull and rebuild (`docker compose up -d --build`, or `git pull && make build`), then restart. Database migrations run automatically on start. Back up the data directory first.
 
 ## Hardening checklist
 
