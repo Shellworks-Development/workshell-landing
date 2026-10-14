@@ -39,13 +39,26 @@ The SDK stays off in Studio unless you pass `enableInStudio = true`. Data sent f
 
 ## 4. Add client reporting (optional)
 
-Require the same module from any LocalScript:
+The client has no `init`. Require the module from a LocalScript, for example in **StarterPlayer → StarterPlayerScripts**, and it starts on its own:
 
 ```lua
+-- StarterPlayerScripts/Workshell.client.luau
 local Workshell = require(game.ReplicatedStorage.Workshell)
+
+-- Optional: report handled errors, events and breadcrumbs from the client.
+Workshell.addBreadcrumb("Opened shop", "ui")
+Workshell.track("shop_opened", { tab = "swords" })
 ```
 
-Clients then report their errors, device type, and frame rate, ping and memory. Clients can call `track`, `captureError`, `try` and `addBreadcrumb`; everything else is a no-op on the client. Client reports travel through a rate-limited RemoteEvent and are marked `$client = true`, so you can always tell them apart from server data.
+Requiring it is enough to capture uncaught client errors and report the device type, frame rate, ping and memory every 30 seconds. Clients can also call `captureError`, `try`, `wrap`, `track` and `addBreadcrumb`; every other function is a harmless no-op on the client, so shared modules can call it without checking where they run.
+
+How it connects: `Workshell.init` on the server creates a RemoteEvent next to the module, and the client sends its reports through it. The client waits up to 60 seconds for that RemoteEvent. If it never appears, client reporting stays off, which happens when:
+
+- the server never calls `Workshell.init`, or calls it more than 60 seconds after the player joins,
+- you're in Studio without `enableInStudio = true` (the server SDK stays off, so there's nothing to connect to),
+- the server sets `clientReporting = false`.
+
+Client reports are rate-limited per player and marked `$client = true`, so you can always tell them apart from server data.
 
 ## 5. Sign requests (recommended)
 
