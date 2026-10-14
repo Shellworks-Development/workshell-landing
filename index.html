@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Workshell · Self-hosted observability for Roblox games</title>
+    <meta
+      name="description"
+      content="Error tracking, live logs, player sessions, performance traces and exploit detection for Roblox games. One binary on your own server."
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f6f3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181b" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Workshell · Know what your Roblox servers are doing" />
+    <meta property="og:description" content="Self-hosted error tracking, logs, sessions, performance and anti-exploit for Roblox games." />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" as="image" href="/screens/overview.webp" type="image/webp" fetchpriority="high" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="min-h-dvh">
+    <div id="top-sentinel" class="absolute top-0 h-px w-px" aria-hidden="true"></div>
+
+    <!-- Nav -->
+    <header class="nav sticky top-0 z-50 pt-[env(safe-area-inset-top)]">
+      <nav class="container-page flex h-16 items-center gap-6" aria-label="Main">
+        <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight" aria-label="Workshell home">
+          <img src="/favicon.svg" alt="" class="size-7" width="28" height="28" />
+          <span class="text-[17px]">Workshell</span>
+        </a>
+        <div class="hidden items-center gap-6 text-sm text-muted md:flex">
+          <a class="nav-link transition-colors" href="#features">Features</a>
+          <a class="nav-link transition-colors" href="#security">Security</a>
+          <a class="nav-link transition-colors" href="#self-host">Self-host</a>
+          <a class="nav-link transition-colors" href="https://github.com/Shellworks-Development/workshell#readme">Docs</a>
+        </div>
+        <div class="ml-auto flex items-center gap-2">
+          <a href="https://github.com/Shellworks-Development/workshell" class="btn btn-secondary btn-sm" aria-label="Workshell on GitHub">
+            <icon name="github" class="size-4"></icon><span class="max-sm:hidden">GitHub</span>
+          </a>
+          <a href="#self-host" class="btn btn-primary btn-sm">Get started</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="container-page pt-14 pb-10 text-center sm:pt-24">
+        <div class="hero-in mx-auto flex max-w-3xl flex-col items-center">
+          <a
+            href="https://github.com/Shellworks-Development/workshell"
+            class="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-[13px] text-muted"
+          >
+            <span class="size-1.5 rounded-full bg-mint"></span>
+            Self-hosted · Source available · Built for Roblox
+          </a>
+          <h1 class="text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.02] font-semibold tracking-[-0.035em] text-balance">
+            Know what your Roblox servers are doing.
+          </h1>
+          <p class="lead mx-auto mt-6 max-w-2xl sm:text-lg">
+            Errors with real stack traces, every player session, live logs, performance traces and exploit detection. One dashboard that runs on your
+            own server.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#self-host" class="btn btn-primary">Self-host Workshell <icon name="arrow-right" class="size-4"></icon></a>
+            <a href="https://github.com/Shellworks-Development/workshell" class="btn btn-secondary"><icon name="github" class="size-4"></icon> View on GitHub</a>
+          </div>
+          <p class="mt-5 text-[13px] text-faint">One Go binary · SQLite · No per-event pricing</p>
+        </div>
+
+        <div class="hero-shot mx-auto mt-14 max-w-[1080px] sm:mt-16">
+          <div class="shot p-1.5 sm:p-2">
+            <div class="flex items-center gap-1.5 px-2 pt-0.5 pb-2 sm:pb-2.5" aria-hidden="true">
+              <span class="size-2.5 rounded-full bg-border-strong"></span>
+              <span class="size-2.5 rounded-full bg-border-strong"></span>
+              <span class="size-2.5 rounded-full bg-border-strong"></span>
+              <span class="mx-auto rounded-md bg-surface px-3 py-0.5 font-mono text-[11px] text-faint max-sm:hidden">workshell.yourgame.dev</span>
+              <span class="w-[42px] max-sm:hidden"></span>
+            </div>
+            <img
+              src="/screens/overview.webp"
+              width="2400"
+              height="1500"
+              fetchpriority="high"
+              alt="The Workshell overview for a game: players online, errors, exploit detections, revenue, a concurrent players chart and the top unresolved issues"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="container-page py-20 sm:py-28">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <div class="eyebrow">Features</div>
+          <h2 class="h2">Everything a live game needs. Nothing it doesn't.</h2>
+          <p class="lead mt-4">Roblox gives you the developer console and a crash count. Workshell gives you the rest.</p>
+        </div>
+
+        <div class="mt-16 space-y-20 sm:mt-20 sm:space-y-28">
+          <!-- Issues -->
+          <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+            <div class="reveal">
+              <div class="mb-4 grid size-10 place-items-center rounded-xl border border-border bg-surface text-accent"><icon name="bug" class="size-5"></icon></div>
+              <h3 class="text-2xl font-semibold tracking-tight">Errors you can actually fix</h3>
+              <p class="lead mt-3">
+                Server and client errors are grouped by cause, with breadcrumbs, affected players and the release that introduced them.
+              </p>
+              <ul class="check-list mt-6 space-y-3">
+                <li><icon name="check"></icon><span>Rojo sourcemaps turn <code class="font-mono text-[13px] text-fg">ServerScriptService.Combat:42</code> into the file and line in your repo, at the exact commit</span></li>
+                <li><icon name="check"></icon><span>Regressions are caught when a fixed issue comes back</span></li>
+                <li><icon name="check"></icon><span>Assign teammates, discuss with @mentions, open linked GitHub issues</span></li>
+              </ul>
+            </div>
+            <div class="reveal shot" style="--delay: 80ms">
+              <img src="/screens/issue.webp" width="1600" height="904" loading="lazy" alt="An error event with its stack trace mapped to source files, breadcrumbs and server details" />
+            </div>
+          </div>
+
+          <!-- Sessions -->
+          <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
+            <div class="reveal shot max-lg:order-last" style="--delay: 80ms">
+              <img src="/screens/session.webp" width="1600" height="886" loading="lazy" alt="A player session timeline with joins, traced operations and errors" />
+            </div>
+            <div class="reveal">
+              <div class="mb-4 grid size-10 place-items-center rounded-xl border border-border bg-surface text-accent"><icon name="waves" class="size-5"></icon></div>
+              <h3 class="text-2xl font-semibold tracking-tight">Follow one player from join to leave</h3>
+              <p class="lead mt-3">
+                Every session on one timeline: events, logs, errors, purchases, traced operations and exploit detections, next to that player's frame
+                rate, ping and memory.
+              </p>
+              <ul class="check-list mt-6 space-y-3">
+                <li><icon name="check"></icon><span>Player profiles with every session, playtime and spend</span></li>
+                <li><icon name="check"></icon><span>Attach your own metadata with <code class="font-mono text-[13px] text-fg">Workshell.setUser</code></span></li>
+                <li><icon name="check"></icon><span>Optional HMAC-hashed player ids if you'd rather not store real ones</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+            <div class="reveal">
+              <div class="mb-4 grid size-10 place-items-center rounded-xl border border-border bg-surface text-accent"><icon name="shield-alert" class="size-5"></icon></div>
+              <h3 class="text-2xl font-semibold tracking-tight">Catch exploiters in the act</h3>
+              <p class="lead mt-3">
+                Report detections from your anti-cheat with one call, and see who's flagged, how often and what you did about it.
+              </p>
+              <ul class="check-list mt-6 space-y-3">
+                <li><icon name="check"></icon><span><code class="font-mono text-[13px] text-fg">Workshell.flag</code> for speed, teleport, fly, dupes, tampered currency…</span></li>
+                <li><icon name="check"></icon><span><code class="font-mono text-[13px] text-fg">Workshell.protect</code> validates and rate-limits your remotes</span></li>
+                <li><icon name="check"></icon><span>Client floods are detected automatically, and the flooder's junk errors are quarantined</span></li>
+              </ul>
+            </div>
+            <div class="reveal shot" style="--delay: 80ms">
+              <img src="/screens/security.webp" width="1600" height="846" loading="lazy" alt="The security page: detections by severity over time, detection types and the most flagged players" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Three-up -->
+        <div class="mt-24 grid gap-5 md:grid-cols-3 sm:mt-32">
+          <article class="reveal card flex flex-col overflow-hidden">
+            <div class="p-6 pb-5">
+              <div class="flex items-center gap-2 font-semibold"><icon name="scroll-text" class="size-[18px] text-accent"></icon> Live logs</div>
+              <p class="mt-2 text-[15px] leading-relaxed text-muted">All server output and structured logs, searchable, filterable by server or player, streaming as they happen.</p>
+            </div>
+            <div class="mt-auto aspect-[16/10] overflow-hidden border-t border-border bg-surface-2"><img src="/screens/logs.webp" width="1600" height="681" loading="lazy" alt="A live stream of server logs" class="block size-full object-cover object-left-top" /></div>
+          </article>
+          <article class="reveal card flex flex-col overflow-hidden" style="--delay: 60ms">
+            <div class="p-6 pb-5">
+              <div class="flex items-center gap-2 font-semibold"><icon name="gauge" class="size-[18px] text-accent"></icon> Performance traces</div>
+              <p class="mt-2 text-[15px] leading-relaxed text-muted">Time anything with <code class="font-mono text-[13px] text-fg">Workshell.trace</code>. See p50 and p95, then open a slow run span by span.</p>
+            </div>
+            <div class="mt-auto aspect-[16/10] overflow-hidden border-t border-border bg-surface-2"><img src="/screens/trace.webp" width="1288" height="748" loading="lazy" alt="A trace waterfall for player.join showing slow DataStore retries" class="block size-full object-cover object-left-top" /></div>
+          </article>
+          <article class="reveal card flex flex-col overflow-hidden" style="--delay: 120ms">
+            <div class="p-6 pb-5">
+              <div class="flex items-center gap-2 font-semibold"><icon name="presentation" class="size-[18px] text-accent"></icon> Whiteboards</div>
+              <p class="mt-2 text-[15px] leading-relaxed text-muted">Send charts, issues, sessions and traces to a shared canvas and work out what went wrong together.</p>
+            </div>
+            <div class="mt-auto aspect-[16/10] overflow-hidden border-t border-border bg-surface-2"><img src="/screens/whiteboard.webp" width="1600" height="1076" loading="lazy" alt="A whiteboard with a chart, an issue, sticky notes and a trace graph" class="block size-full object-cover object-left-top" /></div>
+          </article>
+        </div>
+
+        <!-- And more -->
+        <ul class="reveal mt-12 grid grid-cols-2 gap-x-6 gap-y-4 text-[15px] text-muted sm:grid-cols-3 lg:grid-cols-6">
+          <li class="flex items-center gap-2"><icon name="git-commit-horizontal" class="size-4 text-faint"></icon> Releases</li>
+          <li class="flex items-center gap-2"><icon name="chart-column" class="size-4 text-faint"></icon> Analytics</li>
+          <li class="flex items-center gap-2"><icon name="siren" class="size-4 text-faint"></icon> Discord alerts</li>
+          <li class="flex items-center gap-2"><icon name="activity" class="size-4 text-faint"></icon> Custom metrics</li>
+          <li class="flex items-center gap-2"><icon name="users" class="size-4 text-faint"></icon> Team inbox</li>
+          <li class="flex items-center gap-2"><icon name="palette" class="size-4 text-faint"></icon> Catppuccin &amp; more</li>
+        </ul>
+      </section>
+
+      <!-- SDK -->
+      <section class="border-y border-border bg-surface/60">
+        <div class="container-page grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2">
+          <div class="reveal">
+            <div class="eyebrow">The SDK</div>
+            <h2 class="h2">A few lines of Luau.</h2>
+            <p class="lead mt-4">
+              Drop the module in ReplicatedStorage and start it from a server Script. Errors, output, sessions, server health, client performance and
+              purchases are captured from there.
+            </p>
+            <ul class="check-list mt-6 space-y-3">
+              <li><icon name="check"></icon><span>Batched, gzipped and signed with HMAC-SHA256</span></li>
+              <li><icon name="check"></icon><span>Client data goes through a rate-limited relay, so clients can't spoof server events</span></li>
+              <li><icon name="check"></icon><span>Works with Rojo and Wally, or as a plain model file</span></li>
+            </ul>
+          </div>
+          <div class="reveal card min-w-0 overflow-hidden" style="--delay: 80ms">
+            <div class="flex items-center justify-between border-b border-border py-2 pr-2 pl-4">
+              <span class="font-mono text-xs text-faint">ServerScriptService/Workshell.server.luau</span>
+              <button class="copy-btn btn btn-secondary btn-sm h-8 px-2.5 text-[13px]" data-copy="code-init" type="button">
+                <span class="relative size-4" aria-hidden="true">
+                  <span class="copy-icon icon-copy absolute inset-0"><icon name="copy" class="size-4"></icon></span>
+                  <span class="copy-icon icon-check absolute inset-0 text-success"><icon name="check" class="size-4"></icon></span>
+                </span>
+                <span class="copy-label" aria-live="polite">Copy</span>
+              </button>
+            </div>
+<pre class="code"><code id="code-init"><span class="k">local</span> Workshell = <span class="f">require</span>(game.ReplicatedStorage.Workshell)
+
+Workshell.<span class="f">init</span>({
+	url = <span class="s">"https://workshell.yourgame.dev"</span>,
+	key = HttpService:<span class="f">GetSecret</span>(<span class="s">"workshell_key"</span>),
+})
+
+<span class="c">-- Then report what matters to your game</span>
+Workshell.<span class="f">track</span>(<span class="s">"level_up"</span>, { level = <span class="n">5</span> }, player)
+Workshell.<span class="f">flag</span>(player, <span class="s">"speed"</span>, { speed = <span class="n">90</span> }, {
+	severity = <span class="s">"high"</span>, action = <span class="s">"kicked"</span>,
+})</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Security -->
+      <section id="security" class="container-page py-20 sm:py-28">
+        <div class="reveal max-w-2xl">
+          <div class="eyebrow">Security</div>
+          <h2 class="h2">Built for games full of exploiters.</h2>
+          <p class="lead mt-4">Exploiters can reach Workshell through your game's clients, and they will try. Workshell assumes it.</p>
+        </div>
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal card p-6">
+            <icon name="key-round" class="size-5 text-accent"></icon>
+            <h3 class="mt-4 font-semibold">Signed requests</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-muted">Each batch is signed over a timestamp and its body. A leaked key alone can't forge or replay data.</p>
+          </div>
+          <div class="reveal card p-6" style="--delay: 60ms">
+            <icon name="siren" class="size-5 text-accent"></icon>
+            <h3 class="mt-4 font-semibold">Flood limits</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-muted">Per-player and per-server caps. Floods are dropped, recorded as detections, and can't bury real issues.</p>
+          </div>
+          <div class="reveal card p-6" style="--delay: 120ms">
+            <icon name="shield-check" class="size-5 text-accent"></icon>
+            <h3 class="mt-4 font-semibold">Safe rendering</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-muted">Player-supplied text always renders as text, under a strict Content-Security-Policy. No XSS through your logs.</p>
+          </div>
+          <div class="reveal card p-6" style="--delay: 180ms">
+            <icon name="lock" class="size-5 text-accent"></icon>
+            <h3 class="mt-4 font-semibold">Encrypted secrets</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-muted">Webhook URLs, GitHub tokens and signing secrets are encrypted at rest with AES-256-GCM.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Self-host -->
+      <section id="self-host" class="border-y border-border bg-surface/60">
+        <div class="container-page py-20 sm:py-28">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <div class="eyebrow">Self-host</div>
+            <h2 class="h2">Your server. Your data.</h2>
+            <p class="lead mt-4">
+              Workshell is a single 16&nbsp;MB binary with the dashboard built in, backed by SQLite. Add Redis when you outgrow one box. Put it behind
+              Caddy, nginx or a Cloudflare Tunnel.
+            </p>
+          </div>
+
+          <div class="mt-12 grid gap-5 lg:grid-cols-2">
+            <div class="reveal card min-w-0 overflow-hidden">
+              <div class="flex items-center justify-between border-b border-border py-2 pr-2 pl-4">
+                <span class="flex items-center gap-2 text-sm font-medium"><icon name="container" class="size-4 text-muted"></icon> Docker</span>
+                <button class="copy-btn btn btn-secondary btn-sm h-8 px-2.5 text-[13px]" data-copy="code-docker" type="button">
+                  <span class="relative size-4" aria-hidden="true">
+                    <span class="copy-icon icon-copy absolute inset-0"><icon name="copy" class="size-4"></icon></span>
+                    <span class="copy-icon icon-check absolute inset-0 text-success"><icon name="check" class="size-4"></icon></span>
+                  </span>
+                  <span class="copy-label" aria-live="polite">Copy</span>
+                </button>
+              </div>
+<pre class="code"><code id="code-docker"><span class="f">git</span> clone https://github.com/Shellworks-Development/workshell
+<span class="f">cd</span> workshell
+<span class="c"># set WORKSHELL_PUBLIC_URL in docker-compose.yml</span>
+<span class="f">docker</span> compose up -d</code></pre>
+            </div>
+            <div class="reveal card min-w-0 overflow-hidden" style="--delay: 80ms">
+              <div class="flex items-center justify-between border-b border-border py-2 pr-2 pl-4">
+                <span class="flex items-center gap-2 text-sm font-medium"><icon name="terminal" class="size-4 text-muted"></icon> From source</span>
+                <button class="copy-btn btn btn-secondary btn-sm h-8 px-2.5 text-[13px]" data-copy="code-source" type="button">
+                  <span class="relative size-4" aria-hidden="true">
+                    <span class="copy-icon icon-copy absolute inset-0"><icon name="copy" class="size-4"></icon></span>
+                    <span class="copy-icon icon-check absolute inset-0 text-success"><icon name="check" class="size-4"></icon></span>
+                  </span>
+                  <span class="copy-label" aria-live="polite">Copy</span>
+                </button>
+              </div>
+<pre class="code"><code id="code-source"><span class="c"># needs Go 1.26+, Node 22+ and pnpm</span>
+<span class="f">git</span> clone https://github.com/Shellworks-Development/workshell
+<span class="f">cd</span> workshell &amp;&amp; <span class="f">make</span> build
+./bin/workshell   <span class="c"># http://localhost:8080</span></code></pre>
+            </div>
+          </div>
+
+          <dl class="reveal mt-12 grid grid-cols-2 gap-6 text-center sm:grid-cols-4">
+            <div><dt class="text-[13px] text-faint">Runtime</dt><dd class="mt-1 font-medium">One Go binary</dd></div>
+            <div><dt class="text-[13px] text-faint">Storage</dt><dd class="mt-1 font-medium">SQLite</dd></div>
+            <div><dt class="text-[13px] text-faint">Scale out</dt><dd class="mt-1 font-medium">Optional Redis</dd></div>
+            <div><dt class="text-[13px] text-faint">Pricing</dt><dd class="mt-1 font-medium">Your own server</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Mobile -->
+      <section class="container-page grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
+        <div class="reveal shot max-lg:order-last">
+          <img src="/screens/mobile.webp" width="1274" height="892" loading="lazy" alt="Workshell on a phone: the overview, an issue and live logs" />
+        </div>
+        <div class="reveal" style="--delay: 80ms">
+          <div class="mb-4 grid size-10 place-items-center rounded-xl border border-border bg-surface text-accent"><icon name="smartphone" class="size-5"></icon></div>
+          <h2 class="h2">Check on your game from anywhere.</h2>
+          <p class="lead mt-4">
+            The dashboard installs as an app on your phone. It's built for touch, updates live, and comes in light, dark, Catppuccin, Rosé Pine, Nord
+            and Gruvbox.
+          </p>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="container-page pb-24 sm:pb-32">
+        <div class="reveal card flex flex-col items-center px-6 py-14 text-center sm:py-20">
+          <img src="/favicon.svg" alt="" width="48" height="48" class="size-12" />
+          <h2 class="h2 mt-6 max-w-xl">Ship your next update with your eyes open.</h2>
+          <p class="lead mt-4 max-w-lg">Set up Workshell in an afternoon. It's free to self-host, for any game, commercial or not.</p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#self-host" class="btn btn-primary">Self-host Workshell <icon name="arrow-right" class="size-4"></icon></a>
+            <a href="https://github.com/Shellworks-Development/workshell#readme" class="btn btn-secondary">Read the docs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-border pb-[env(safe-area-inset-bottom)]">
+      <div class="container-page flex flex-col gap-4 py-8 text-sm text-muted sm:flex-row sm:items-center">
+        <div class="flex items-center gap-2.5">
+          <img src="/favicon.svg" alt="" width="20" height="20" class="size-5" />
+          <span>© <span id="year">2026</span> Shellworks Development</span>
+        </div>
+        <div class="flex gap-5 sm:ml-auto">
+          <a class="footer-link transition-colors" href="https://github.com/Shellworks-Development/workshell">GitHub</a>
+          <a class="footer-link transition-colors" href="https://github.com/Shellworks-Development/workshell#readme">Docs</a>
+          <a class="footer-link transition-colors" href="https://github.com/Shellworks-Development/workshell/blob/master/LICENSE">License</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
