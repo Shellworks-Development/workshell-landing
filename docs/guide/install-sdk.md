@@ -52,7 +52,7 @@ Workshell.track("shop_opened", { tab = "swords" })
 
 Requiring it is enough to capture uncaught client errors and report the device type, frame rate, ping and memory every 30 seconds. Clients can also call `captureError`, `try`, `wrap`, `track` and `addBreadcrumb`; every other function is a harmless no-op on the client, so shared modules can call it without checking where they run.
 
-How it connects: `Workshell.init` on the server creates a RemoteEvent next to the module, and the client sends its reports through it. The client waits up to 60 seconds for that RemoteEvent. If it never appears, client reporting stays off, which happens when:
+How it connects: `Workshell.init` on the server creates a RemoteEvent inside the Workshell module, and the client sends its reports through it. The client waits up to 60 seconds for that RemoteEvent. If it never appears, client reporting stays off, which happens when:
 
 - the server never calls `Workshell.init`, or calls it more than 60 seconds after the player joins,
 - you're in Studio without `enableInStudio = true` (the server SDK stays off, so there's nothing to connect to),
