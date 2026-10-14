@@ -1,3 +1,16 @@
 allowBuilds:
   esbuild: true
   workerd: true
+# VitePress pulls in whatever Vue is newest; hold it to a release old enough
+# for pnpm's minimum release age instead of excluding fresh versions from it.
+overrides:
+  vue: 3.5.43
+  '@vue/compiler-core': 3.5.43
+  '@vue/compiler-dom': 3.5.43
+  '@vue/compiler-sfc': 3.5.43
+  '@vue/compiler-ssr': 3.5.43
+  '@vue/reactivity': 3.5.43
+  '@vue/runtime-core': 3.5.43
+  '@vue/runtime-dom': 3.5.43
+  '@vue/server-renderer': 3.5.43
+  '@vue/shared': 3.5.43

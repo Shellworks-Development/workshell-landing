@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "workshell-landing",
   "compatibility_date": "2026-09-01",
+  "routes": [{ "pattern": "workshell.shellworks.dev", "custom_domain": true }],
   // Static site: no Worker script, Cloudflare serves the built files.
   "assets": {
     "directory": "./dist",

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc --noEmit && vite build",
+    "docs:dev": "vitepress dev docs --host",
+    "build": "tsc --noEmit && vite build && vitepress build docs && node scripts/docs-csp.mjs",
     "preview": "wrangler dev",
     "deploy": "pnpm build && wrangler deploy"
   },
@@ -16,10 +17,12 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
     "lucide": "^1.55.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vite": "^8.3.4",
+    "vitepress": "1.6.4",
     "wrangler": "^4.149.0"
   }
 }
