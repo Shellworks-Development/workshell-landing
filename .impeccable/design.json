@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T06:25:44.222057+00:00",
+  "title": "Design System: Workshell landing",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Workshell Violet",
+        "canonical": "#6d4aff",
+        "tonalRamp": [
+          "#1e1250",
+          "#2f1d80",
+          "#4329b8",
+          "#5636e6",
+          "#6d4aff",
+          "#8f75ff",
+          "#b9a9ff",
+          "#e4ddff"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Workshell Light ground",
+        "canonical": "#f6f6f3",
+        "tonalRamp": [
+          "#1d1d20",
+          "#3c3c42",
+          "#5f5f66",
+          "#8c8c93",
+          "#d2d1cb",
+          "#e4e3de",
+          "#f1f0ec",
+          "#f6f6f3"
+        ]
+      },
+      "dark-bg": {
+        "role": "neutral",
+        "displayName": "Workshell Dark ground",
+        "canonical": "#18181b",
+        "tonalRamp": [
+          "#18181b",
+          "#1f1f23",
+          "#26262b",
+          "#2c2c32",
+          "#3c3c44",
+          "#74747d",
+          "#a2a2ab",
+          "#e6e6ea"
+        ]
+      },
+      "danger": {
+        "role": "status",
+        "displayName": "Error"
+      },
+      "warning": {
+        "role": "status",
+        "displayName": "Flag / slow"
+      },
+      "success": {
+        "role": "status",
+        "displayName": "Joined / ok"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The one hero headline."
+      },
+      "chapter": {
+        "displayName": "Chapter",
+        "purpose": "One per moment on the spine."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Times, span names, paths, ids, code only."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Entrances, reveals, press feedback."
+      },
+      {
+        "name": "event-land",
+        "value": "560ms ease-out, 260ms stagger",
+        "purpose": "Opening events land one after another, once."
+      },
+      {
+        "name": "chapter-reveal",
+        "value": "opacity + translateY(14px), 700ms ease-out",
+        "purpose": "Evidence appears once when the session clock reaches its chapter."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.97), 160ms ease-out",
+        "purpose": "Buttons and copy buttons."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "960px"
+      },
+      {
+        "name": "phone",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action: Self-host Workshell.",
+      "html": "<button class=\"ds-btn-primary\">Self-host Workshell</button>",
+      "css": ".ds-btn-primary{height:44px;padding:0 18px;border:0;border-radius:10px;background:#1d1d20;color:#f6f6f3;font:500 15px Geist,sans-serif;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease}.ds-btn-primary:hover{background:#3a3a3e}.ds-btn-primary:active{transform:scale(.97)}.ds-btn-primary:focus-visible{outline:2px solid #6d4aff;outline-offset:3px}"
+    },
+    {
+      "name": "Ghost button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action: GitHub, Watch.",
+      "html": "<button class=\"ds-btn-ghost\">GitHub</button>",
+      "css": ".ds-btn-ghost{height:44px;padding:0 18px;border:1px solid #e4e3de;border-radius:10px;background:transparent;color:#1d1d20;font:500 15px Geist,sans-serif;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease}.ds-btn-ghost:hover{background:#f1f0ec;border-color:#d2d1cb}.ds-btn-ghost:active{transform:scale(.97)}.ds-btn-ghost:focus-visible{outline:2px solid #6d4aff;outline-offset:3px}"
+    },
+    {
+      "name": "Event panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "A moment on the spine, with its time in the gutter.",
+      "html": "<div class=\"ds-event\"><time>04:55:27</time><div class=\"ds-panel\"><b>Player 100796674 joined</b><span>83bd996b</span></div></div>",
+      "css": ".ds-event{position:relative;padding-left:96px}.ds-event time{position:absolute;left:0;top:0;width:76px;text-align:right;font:12.5px 'Geist Mono',monospace;color:#8c8c93}.ds-event::before{content:'';position:absolute;left:84px;top:3px;width:12px;height:12px;border-radius:50%;background:#15803d}.ds-panel{display:flex;justify-content:space-between;gap:16px;background:#fff;border:1px solid #e4e3de;border-radius:14px;padding:14px 16px;font:15px Geist,sans-serif}.ds-panel span{font:12.5px 'Geist Mono',monospace;color:#8c8c93}"
+    },
+    {
+      "name": "Status tag",
+      "kind": "chip",
+      "refersTo": "tag-danger",
+      "description": "Error / flag status only.",
+      "html": "<span class=\"ds-tag\">error</span>",
+      "css": ".ds-tag{font:500 11.5px Geist,sans-serif;padding:2px 8px;border-radius:6px;background:#fdeced;color:#dc2f3c}"
+    },
+    {
+      "name": "Trace row",
+      "kind": "custom",
+      "description": "A span: name indented by depth, bar at its real offset, duration label.",
+      "html": "<div class=\"ds-tr\"><span>datastore.GetAsync</span><i><b>1.38 s</b></i></div>",
+      "css": ".ds-tr{display:grid;grid-template-columns:12.5rem 1fr;gap:12px;align-items:center;height:28px;font:12.5px 'Geist Mono',monospace;color:#dc2f3c}.ds-tr i{position:relative;height:18px;border-radius:4px;background:#f1f0ec}.ds-tr i::after{content:'';position:absolute;inset-block:0;left:0;width:34%;border-radius:4px;background:#e8636d}.ds-tr b{position:absolute;z-index:1;right:calc(66% + 7px);top:50%;transform:translateY(-50%);font:normal 500 11.5px 'Geist Mono',monospace;color:#fff}"
+    },
+    {
+      "name": "Session clock",
+      "kind": "nav",
+      "description": "Nav chip that follows the session's time as you scroll.",
+      "html": "<div class=\"ds-clock\"><i></i><b>Player 100796674</b><span>05:03:30</span></div>",
+      "css": ".ds-clock{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 11px;border:1px solid #e4e3de;border-radius:8px;background:#fff;font:12.5px Geist,sans-serif;color:#5f5f66}.ds-clock i{width:7px;height:7px;border-radius:50%;background:#6d4aff}.ds-clock b{color:#1d1d20;font-weight:500}.ds-clock span{font-family:'Geist Mono',monospace}"
+    }
+  ],
+  "narrative": {
+    "northStar": "One session, one spine",
+    "overview": "The page is a single real player session told top to bottom along a timestamped rail, in the Workshell dashboard's own light and dark themes. Every capability appears as the moment it happened, proven by real values from the recorded session.",
+    "keyCharacteristics": [
+      "One spine, strictly forward in time",
+      "Times in the gutter beside their dot",
+      "Light/dark follow the system; screenshots swap with it",
+      "Dashboard panels carry every fact"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Violet is the only accent and never a background field.",
+        "section": "colors"
+      },
+      {
+        "name": "Mono means data",
+        "body": "Geist Mono only for times, span names, paths, ids and code.",
+        "section": "typography"
+      },
+      {
+        "name": "Hairline, not shadow",
+        "body": "Depth is a 1px border; no drop shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Keep every number traceable to the recorded session or a measured benchmark",
+      "Show evidence at natural size or as HTML"
+    ],
+    "donts": [
+      "No eyebrows, kickers, pill badges or icon-tile feature cards",
+      "No gradients or second accent",
+      "Never move time backwards on the spine",
+      "Never say open source or state hosted pricing"
+    ]
+  }
+}

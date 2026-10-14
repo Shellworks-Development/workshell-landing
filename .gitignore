@@ -2,3 +2,7 @@ node_modules/
 dist/
 .wrangler/
 .dev.vars
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/brief-body.md
+.impeccable/questions/
