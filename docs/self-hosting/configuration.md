@@ -13,6 +13,11 @@ Workshell is configured with environment variables. Everything else (retention, 
 | `WORKSHELL_TRUST_PROXY` | `false` | Trust `X-Forwarded-*` headers from your reverse proxy |
 | `WORKSHELL_MAX_INGEST_BYTES` | `8388608` | Largest ingest request accepted, after decompression |
 | `WORKSHELL_SESSION_DAYS` | `30` | How long a dashboard login lasts |
+| `WORKSHELL_OIDC_ISSUER`, `_CLIENT_ID`, `_CLIENT_SECRET`, `_NAME` | | [OpenID Connect sign-in](/self-hosting/sso#openid-connect) |
+| `WORKSHELL_OIDC_TRUST_EMAIL` | `false` | Accept emails the provider doesn't mark verified (Microsoft Entra) |
+| `WORKSHELL_CF_ACCESS_TEAM`, `WORKSHELL_CF_ACCESS_AUD` | | [Cloudflare Access sign-in](/self-hosting/sso#cloudflare-access) |
+| `WORKSHELL_SSO_ALLOWED_DOMAINS` | | Email domains that can create an account through SSO |
+| `WORKSHELL_PASSWORD_LOGIN` | `true` | Set to `false` to require SSO |
 
 ::: warning Changing the secret key
 If `WORKSHELL_SECRET_KEY` changes, secrets encrypted with the old key can't be read. Workshell logs an error naming the affected project, and you'll need to regenerate or re-enter its webhook URLs, GitHub token and signing secret.

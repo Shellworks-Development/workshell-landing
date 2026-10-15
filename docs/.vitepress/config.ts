@@ -71,6 +71,7 @@ export default defineConfig({
         items: [
           { text: 'Deployment', link: '/self-hosting/deployment' },
           { text: 'Configuration', link: '/self-hosting/configuration' },
+          { text: 'Single sign-on', link: '/self-hosting/sso' },
           { text: 'Capacity', link: '/self-hosting/capacity' },
           { text: 'Ingest API', link: '/self-hosting/ingest-api' },
         ],

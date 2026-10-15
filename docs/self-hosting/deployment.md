@@ -101,3 +101,4 @@ Install the new binary (rerun the install script, or download it from the [relea
 - Store the ingest key with `HttpService:GetSecret()` rather than in the place file.
 - Set `WORKSHELL_SECRET_KEY` from a secret manager, so the key isn't stored next to the database.
 - Keep the data directory off any public share, and back it up.
+- Use [single sign-on](/self-hosting/sso) for your team, and turn off password sign-in once everyone can use it.
